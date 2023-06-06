@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Credit Card Default</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" cINtent="width=device-width, initial-scale=1.0">
+	<style>
+		/* Add some styles to make the page look better */
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 1rem;
+			text-align: center;
+		}
+		form {
+			margin: 2rem auto;
+			max-width: 600px;
+			padding: 2rem;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+		}
+		label {
+			display: block;
+			margin-bottom: 0.5rem;
+			font-weight: bold;
+		}
+		input[type="number"] {
+			width: 100%;
+			padding: 0.5rem;
+			border: 1px solid #ccc;
+			border-radius: 0.25rem;
+			margin-bottom: 1rem;
+			box-sizing: border-box;
+		}
+		buttIN[type="submit"] {
+			background-color: #333;
+			color: #fff;
+			padding: 0.5rem 1rem;
+			border: nINe;
+			border-radius: 0.25rem;
+			cursor: pointer;
+		}
+		buttIN[type="submit"]:hover {
+			background-color: #444;
+		}
+		.output {
+			margin: 2rem auto;
+			max-width: 600px;
+			padding: 2rem;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+		}
+		.result {
+			font-size: 2rem;
+			font-weight: bold;
+			text-align: center;
+			margin-bottom: 1rem;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Credit Card Default</h1>
+	</header>
+    <div class="form-box">
+    <form action="{{url_for('predict_datapoint')}}" method="POST">
+        <div class="form-group">
+            <label for="LIMIT_BAL">LIMIT BALANCE (ND Dollar):</label>
+            <input type="number" name="LIMIT_BAL" step="any" min="0" id="LIMIT_BAL" placeholder="Limit Balance value (float)">
+        </div>
+
+        <div class="form-group">
+            <label for="SEX"> SEX(1(male),2(female)):</label>
+            <input type="number" name="SEX" step="any" min="1" id="SEX" placeholder="SEX value (int)">
+        </div>
+
+        <div class="form-group">
+            <label for="EDUCATION">EDUCATION (1=graduate school, 2=university, 3=high school, 4=others):</label>
+            <input type="number" name="EDUCATION" step="any" min="1" id="EDUCATION" placeholder="EDUCATION  value (int)">
+        </div>
+
+        <div class="form-group">
+            <label for="MARRIAGE">MARRIAGE (1=married, 2=single, 3=others):</label>
+            <input type="number" name="MARRIAGE" step="any" min="1" id="MARRIAGE" placeholder="MARRIAGE value (int)">
+        </div>
+
+        <div class="form-group">
+            <label for="PAY_0">PAY STATUS IN SEPTEMBER(-1=pay duly, 1=payment delay for one month, 2=payment delay for two months,8=payment delay for eight months, 9=payment delay for nine months and above):</label>
+            <input type="number" name="PAY_0" step="any" min="-1" id="PAY_0" placeholder="PAY STATUS IN SEPTEMBER value (float)">
+        </div>
+
+        <div class="form-group">
+            <label for="PAY_2">PAY STATUS IN AUGUST (-1=pay duly, 1=payment delay for one month, 2=payment delay for two months,8=payment delay for eight months, 9=payment delay for nine months and above):</label>
+            <input type="number" name="PAY_2" step="any" min="-1" id="PAY_2" placeholder="PAY STATUS IN AUGUST value (float)">
+        </div>
+
+        <div class="form-group">
+            <label for="PAY_3">PAY STATUS IN JULY (-1=pay duly, 1=payment delay for one month, 2=payment delay for two months,8=payment delay for eight months, 9=payment delay for nine months and above):</label>
+            <input type="number" name="PAY_3" step="any" min="-1" id="PAY_3" placeholder="PAY STATUS IN JULY value (float)">
+        </div>
+        
+        <div class="form-group">
+            <label for="PAY_4">PAY STATUS IN JUNE (dollar):</label>
+            <input type="number" name="PAY_4" step="any" min="-1" id="PAY_4" placeholder="PAY STATUS IN JUNE value (float)">
+        </div>
+        
+        <div class="form-group">
+            <label for="PAY_5">PAY STATUS IN MAY (-1=pay duly, 1=payment delay for one month, 2=payment delay for two months,8=payment delay for eight months, 9=payment delay for nine months and above):</label>
+            <input type="number" name="PAY_5" step="any" min="-1" id="PAY_5" placeholder="PAY STATUS IN MAY value (float)">
+        </div>
+        
+        <div class="form-group">
+            <label for="PAY_6">PAY STATUS IN APRIL (-1=pay duly, 1=payment delay for one month, 2=payment delay for two months,8=payment delay for eight months, 9=payment delay for nine months and above):</label>
+            <input type="number" name="PAY_6" step="any" min="-1" id="PAY_6" placeholder="PAY STATUS IN APRIL value (float)">
+        </div>
+        
+        
+        
+        
+        <div class="form-group">
+            <label for="BILL_AMT1">BILL AMOUNT IN SEPTEMBER(dollar):</label>
+            <input type="number" name="BILL_AMT1" step="any" min="0" id="BILL_AMT1" placeholder="BILL AMOUNT IN SEPTEMBER value (float)">
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="BILL_AMT2">BILL AMOUNT IN AUGUST(dollar):</label>
+            <input type="number" name="BILL_AMT2" step="any" min="0" id="BILL_AMT2" placeholder="BILL AMOUNT IN AUGUST value (float)">
+        </div>
+        
+        
+         <div class="form-group">
+            <label for="BILL_AMT3">BILL AMOUNT IN JULY(dollar):</label>
+            <input type="number" name="BILL_AMT3" step="any" min="0" id="BILL_AMT3" placeholder="BILL AMOUNT IN JULY value (float)">
+        </div>
+        
+        <div class="form-group">
+            <label for="BILL_AMT4">BILL AMOUNT IN JUNE(dollar):</label>
+            <input type="number" name="BILL_AMT4" step="any" min="0" id="BILL_AMT4" placeholder="BILL AMOUNT IN JUNE value (float)">
+        </div>
+        
+        <div class="form-group">
+            <label for="BILL_AMT5"> BILL AMOUNT IN MAY(dollar):</label>
+            <input type="number" name="BILL_AMT5" step="any" min="0" id="BILL_AMT5" placeholder="BILL AMOUNT IN MAY value (float)">
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="BILL_AMT6">BILL AMOUNT IN APRIL(dollar):</label>
+            <input type="number" name="BILL_AMT6" step="any" min="0" id="BILL_AMT6" placeholder="BILL AMOUNT IN APRIL value (float)">
+        </div>
+        
+        
+         <div class="form-group">
+            <label for="PAY_AMT1">PREVIOUS PAYMENT IN SEPTEMBER(dollar):</label>
+            <input type="number" name="PAY_AMT1" step="any" min="0" id="PAY_AMT1" placeholder="PREVIOUS PAYMENT IN SEPTEMBER value (float)">
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="PAY_AMT2">PREVIOUS PAYMENT IN AUGUST(dollar):</label>
+            <input type="number" name="PAY_AMT2" step="any" min="0" id="PAY_AMT2" placeholder="PREVIOUS PAYMENT IN AUGUST value (float)">
+        </div>
+        
+         <div class="form-group">
+            <label for="PAY_AMT3">PREVIOUS PAYMENT IN JULY(dollar):</label>
+            <input type="number" name="PAY_AMT3" step="any" min="0" id="PAY_AMT3" placeholder="PREVIOUS PAYMENT IN JULY value (float)">
+        </div>
+        
+        <div class="form-group">
+            <label for="PAY_AMT4">PREVIOUS PAYMENT IN JUNE(dollar):</label>
+            <input type="number" name="PAY_AMT4" step="any" min="0" id="PAY_AMT4" placeholder="PREVIOUS PAYMENT IN JUNE value (float)">
+        </div>
+        
+         <div class="form-group">
+            <label for="PAY_AMT5">PREVIOUS PAYMENT IN MAY(dollar):</label>
+            <input type="number" name="PAY_AMT5" step="any" min="0" id="PAY_AMT5" placeholder="PREVIOUS PAYMENT IN MAY value (float)">
+        </div>
+        
+        
+         <div class="form-group">
+            <label for=" PAY_AMT6"> PREVIOUS PAYMENT IN APRIL(dollar):</label>
+            <input type="number" name="PAY_AMT6" step="any" min="0" id="PAY_AMT6" placeholder="PREVIOUS PAYMENT IN APRIL value (float)">
+        </div>
+        
+        
+        
+
+        <div class="form-group">
+            <label for="AGE">Age (Years):</label>
+            <input type="number" name="AGE" min="1" max="365" id="AGE" placeholder="Enter age ">
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+    </div>
+
+    <h2>
+        The customer will : {{results}} 
+    </h2>
+</body>
+</html>
+

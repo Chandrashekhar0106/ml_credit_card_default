@@ -1,8 +1,9 @@
-Flask
 pandas
-matplotlib
-seaborn
 numpy
-sklearn
-pandas_profiling
-ipywidgets
+seaborn
+matplotlib
+scikit-learn
+xgboost
+dill
+Flask
+-e .
